@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import PostsGrid from './components/PostsGrid';
+import Sidebar from './components/Sidebar';
+import { convertDate, sortData, formatDate } from './helpers';
 
-function App() {
+const App = () => {
+  const [beersData, setBeersData] = useState({ beers: [] });
+
+  useEffect(() => {
+    fetch('https://api.devx.pl/api/collections/get/beerio?token=7d00588bfc312fc16b35c1894b72b8')
+      .then(res => res.json())
+      .then(res => convertDate(res.entries))
+      .then(res => sortData(res))
+      .then(res => formatDate(res))
+      .then(res => setBeersData({ beers: res }));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <div className="wrapper">
+        <PostsGrid beers={beersData.beers}/>
+        <Sidebar beers={beersData.beers}/>
+      </div>
+      <Footer />
     </div>
   );
 }

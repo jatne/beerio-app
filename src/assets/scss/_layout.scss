@@ -1,0 +1,63 @@
+body {
+  padding-left: var(--sides);
+  padding-right: var(--sides);
+}
+
+.wrapper {
+  @include grid;
+  grid-template-columns: var(--main-cols, 1fr);
+  column-gap: var(--gap-cols, 0);
+  row-gap: var(--gap-row, 3em);
+  padding-bottom: 3em;
+
+  @media screen and (min-width: 1024px) {
+    --main-cols: 1fr 0.4fr;
+    --gap-cols: 6em;
+    --gap-row: 0;
+  }
+}
+
+.sidebar {
+}
+
+.main {
+}
+
+.box {
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+
+  @include line;
+
+  .btn--remove {
+    margin-top: 1em;
+  }
+}
+
+.cloud {
+  @include flex(true, flex-start, center);
+  list-style: none;
+  padding: 0;
+  margin: 0 -0.25em;
+
+  li {
+    padding: 0.15em 0.25em;
+    margin: 0;
+  }
+
+  span {
+    font-weight: $font--bold;
+    background: $color-secondary;
+    color: $color-primary;
+    line-height: 1;
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    border-radius: 20px;
+    cursor: pointer;
+
+    &.active {
+      background: $color-primary;
+      color: $color-secondary;
+    }
+  }
+}

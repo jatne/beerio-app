@@ -1,0 +1,24 @@
+.top-header {
+  @include flex(wrap, space-between, center);
+  padding-top: 2.5em;
+  padding-bottom: 3.5em;
+}
+
+.brand {
+  a {
+    display: block;
+    font-weight: $font--bold;
+    color: $color-primary;
+    font-size: 3em;
+    line-height: 1;
+
+    span {
+      font-size: 0.6em;
+      color: $color-link;
+    }
+  }
+}
+
+.utilities {
+  display: inline-flex;
+}

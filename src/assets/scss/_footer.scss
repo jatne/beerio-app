@@ -1,0 +1,14 @@
+.bottom-footer {
+  padding-top: 1.5em;
+  padding-bottom: 1.8em;
+  text-align: center;
+  background: $color-primary;
+  color: $color-white;
+  border-bottom: 8px solid $color-secondary;
+
+  p {
+    @include resetLastMargin;
+    font-weight: $font--bold;
+    font-size: 0.8em;
+  }
+}
