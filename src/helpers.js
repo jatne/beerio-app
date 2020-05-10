@@ -27,6 +27,16 @@ export function countAndSortUnique(data) {
   const counted = {};
 
   data.forEach(item => counted[item] = item in counted ? counted[item] + 1 : 1);
-
   return Object.entries(counted).sort((a, b) => b[1] - a[1]);
+}
+
+export function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 }
