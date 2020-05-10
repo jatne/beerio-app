@@ -1,5 +1,6 @@
 import React from 'react';
-import { countAndSortUnique } from '../../helpers';
+import { Link } from 'react-router-dom';
+import { countAndSortUnique, slugify } from '../../helpers';
 
 const Style = ({ styles }) => {
   const sortStyles = countAndSortUnique(styles);
@@ -8,7 +9,17 @@ const Style = ({ styles }) => {
     <div className="box">
       <h2>style</h2>
       <ul className="cloud">
-        {sortStyles.map((style, index) => <li key={index}><span>{style[0]} ({style[1]})</span></li>)}
+        {sortStyles.map((style, index) => {
+          const target = `/style/${slugify(style[0])}`;
+          return (
+            <li key={index}>
+              <Link to={target}>
+                <span>{style[0]} ({style[1]})</span>
+              </Link>
+            </li>
+          )
+        })}
+        <li><Link to="/"><span class="reset">Wszystkie</span></Link></li>
       </ul>
     </div>
   )

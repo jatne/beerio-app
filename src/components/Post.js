@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Post = ({ beerData }) => {
-  const { name, brewery, style, alc, date, rating, desc, photo } = beerData;
+  const { name, name_slug, brewery, style, alc, date, rating, desc, photo } = beerData;
+  const target = `/beer/${name_slug}`;
 
   return (
-    <div className="post">
+    <Link to={target} className="post">
       <div className="post__figure" style={{backgroundImage: `url('https://api.devx.pl/${photo.path}')`}}>
         <div className="post__category">
           <span>{style}</span>
@@ -35,7 +37,7 @@ const Post = ({ beerData }) => {
           : ''
         }
       </div>
-    </div>
+    </Link>
   );
 };
 

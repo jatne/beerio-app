@@ -1,5 +1,7 @@
 import React from 'react';
-import { countAndSortUnique } from '../../helpers';
+import { Link } from 'react-router-dom';
+import { countAndSortUnique, slugify } from '../../helpers';
+
 
 const Breweries = ({ breweries }) => {
   const sortedBreweries = countAndSortUnique(breweries);
@@ -8,9 +10,18 @@ const Breweries = ({ breweries }) => {
     <div className="box">
       <h2>Browary</h2>
       <ul className="cloud">
-        {sortedBreweries.map((brewery, index) => <li key={index}><span>{brewery[0]} ({brewery[1]})</span></li>)}
+        {sortedBreweries.map((brewery, index) => {
+          const target = `/brewery/${slugify(brewery[0])}`;
+          return (
+            <li key={index}>
+              <Link to={target}>
+                <span>{brewery[0]} ({brewery[1]})</span>
+              </Link>
+            </li>
+          )
+        })}
+        <li><Link to="/"><span class="reset">Wszystkie</span></Link></li>
       </ul>
-      <button type="button" className="btn btn--link btn--remove"><span>&times;</span> wyłącz filtrowanie</button>
     </div>
   )
 }

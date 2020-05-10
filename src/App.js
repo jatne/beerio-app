@@ -5,8 +5,10 @@ import PostsGrid from './components/PostsGrid';
 import Sidebar from './components/Sidebar';
 import { convertDate, sortData, formatDate } from './helpers';
 
-const App = () => {
+const App = ({match}) => {
   const [beersData, setBeersData] = useState({ beers: [] });
+
+  const { params } = match;
 
   useEffect(() => {
     fetch('https://api.devx.pl/api/collections/get/beerio?token=7d00588bfc312fc16b35c1894b72b8')
@@ -21,7 +23,7 @@ const App = () => {
     <div className="app">
       <Header />
       <div className="wrapper">
-        <PostsGrid beers={beersData.beers}/>
+        <PostsGrid beers={beersData.beers} filtered={Object.keys(params).length ? params : false}/>
         <Sidebar beers={beersData.beers}/>
       </div>
       <Footer />
