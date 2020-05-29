@@ -10,13 +10,18 @@ const App = ({match}) => {
 
   const { params } = match;
 
-  useEffect(() => {
-    fetch('https://api.devx.pl/api/collections/get/beerio?token=7d00588bfc312fc16b35c1894b72b8')
-      .then(res => res.json())
+  const fetchBeers = async () => {
+    const res = await fetch('https://api.devx.pl/api/collections/get/beerio?token=7d00588bfc312fc16b35c1894b72b8');
+    res
+      .json()
       .then(res => convertDate(res.entries))
       .then(res => sortData(res))
       .then(res => formatDate(res))
       .then(res => setBeersData({ beers: res }));
+  }
+
+  useEffect(() => {
+    fetchBeers();
   }, []);
 
   return (
