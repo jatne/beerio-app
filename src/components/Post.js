@@ -24,7 +24,7 @@ const Post = ({ beerData }) => {
       </div>
       <div className="post__main">
         <div className="post__info">
-          <div className="post__subtitle">{brewery.display}</div>
+          <div className="post__subtitle">{brewery}</div>
           <div className="post__date">{date}</div>
         </div>
         <div className="post__title"><h2>{name}</h2></div>
