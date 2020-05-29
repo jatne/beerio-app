@@ -19,7 +19,7 @@ const Style = ({ styles }) => {
             </li>
           )
         })}
-        <li><Link to="/"><span class="reset">Wszystkie</span></Link></li>
+        <li><Link to="/"><span className="reset">Wszystkie</span></Link></li>
       </ul>
     </div>
   )
