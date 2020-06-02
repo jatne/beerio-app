@@ -17,7 +17,7 @@ export function formatDate(date) {
   for (const item of date) {
     const newDate = new Date(item.date);
 
-    item.date = `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()}`;
+    item.date = `${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()}`;
   }
 
   return date;
